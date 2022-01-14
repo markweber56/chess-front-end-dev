@@ -88,6 +88,9 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
+    console.log("getting data");
+    getData();
+
     const moves = history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move :
@@ -118,6 +121,9 @@ class Game extends React.Component {
           <div>{status}</div>
           <ol>{moves}</ol>
         </div>
+        <div className="additional">
+          <p>an additional paragraph</p>
+        </div>
       </div>
     );
   }
@@ -126,6 +132,18 @@ class Game extends React.Component {
 // ========================================
 
 ReactDOM.render(<Game />, document.getElementById("root"));
+
+async function getData() {
+  try {
+    const response = await fetch(
+      'https://flask-heroku-test-mw.herokuapp.com/data'
+    );
+    const data = await response.json();
+    console.log("data: ", data);
+  } catch(error) {
+    console.error(error);
+  }
+}
 
 function calculateWinner(squares) {
   const lines = [
