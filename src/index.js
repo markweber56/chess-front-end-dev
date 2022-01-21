@@ -3,47 +3,37 @@ import ReactDOM from 'react-dom';
 import { FaStar } from "react-icons/fa";
 import './index.css';
 
-function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
+
+function Square({value, onClick}) {
+	return (
+		<button className="square" onClick={onClick}>
+			{value}
+		</button>
+	);
 }
 
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
-  }
-
-  render() {
+function Board({onClick, squares}) {
     return (
       <div>
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+		  <Square value={squares[0]} onClick={() => onClick(0)} />
+          <Square value={squares[1]} onClick={() => onClick(1)} />
+          <Square value={squares[2]} onClick={() => onClick(2)} />
         </div>
         <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
+		  <Square value={squares[3]} onClick={() => onClick(3)} />
+          <Square value={squares[4]} onClick={() => onClick(4)} />
+          <Square value={squares[5]} onClick={() => onClick(5)} />
         </div>
         <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+		  <Square value={squares[6]} onClick={() => onClick(6)} />
+          <Square value={squares[7]} onClick={() => onClick(7)} />
+          <Square value={squares[8]} onClick={() => onClick(8)} />
         </div>
 		<FaStar color="red" />
       </div>
     );
-  }
 }
 
 class Game extends React.Component {
