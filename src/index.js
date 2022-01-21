@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { FaStar } from "react-icons/fa";
 import './index.css';
 
 function Square(props) {
@@ -9,6 +10,7 @@ function Square(props) {
     </button>
   );
 }
+
 
 class Board extends React.Component {
   renderSquare(i) {
@@ -38,6 +40,7 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+		<FaStar color="red" />
       </div>
     );
   }
@@ -136,7 +139,7 @@ ReactDOM.render(<Game />, document.getElementById("root"));
 async function getData() {
   try {
     const response = await fetch(
-      'https://flask-heroku-test-mw.herokuapp.com/data'
+      'https://mw-chess-game.herokuapp.com/data'
     );
     const data = await response.json();
     console.log("data: ", data);
